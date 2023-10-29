@@ -43,5 +43,3 @@ export const deleteProductById = async (req, res) =>{
     res.status(204).json()
 }
 
-
-//Me quede en el minuto 42.00
