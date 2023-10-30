@@ -1,0 +1,4 @@
+use cloudArch
+
+db.createCollection('users')
+db.createCollections('roles')

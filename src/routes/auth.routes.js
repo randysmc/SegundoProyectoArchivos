@@ -1,13 +1,20 @@
 import { Router } from "express";
 //import { } from "../controllers/auth.controller.js"
-import * as authsController from "../controllers/auth.controller.js"
+import {register, login, logout, profile} from '../controllers/auth.controller.js'
+import {authRequire, isAdmin} from '../middlewares/validateToken.js'
 
 
 const router = Router();
 
-router.post('/signup', authsController.signUp);
+router.post('/register', register);
 
 
-router.post('/signin', authsController.signIn);
+router.post('/login', login);
+
+router.post('/logout', logout);
+
+router.get('/profile', [authRequire, isAdmin], profile);
+
+/* 1:09 headers y cookie */
 
 export default router;

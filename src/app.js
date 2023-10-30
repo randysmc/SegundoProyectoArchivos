@@ -2,6 +2,8 @@
 
 import express from 'express';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+
 import {createRoles} from './libs/initialSetup.js'
 
 import authRoutes from './routes/auth.routes.js'
@@ -14,6 +16,7 @@ createRoles();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser())
 
 app.get('/', (req, res) =>{
     res.json('hola mundo')

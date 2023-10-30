@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost/merndb");
+    await mongoose.connect("mongodb://localhost/cloudArch");
     /**
      * useNewUrlParser: true,
        useUnifiedTopology: true,
