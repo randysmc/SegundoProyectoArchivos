@@ -8,6 +8,7 @@ import {createRoles} from './libs/initialSetup.js'
 
 import authRoutes from './routes/auth.routes.js'
 import productsRoutes from './routes/products.routes.js'
+import documentsRoutes from './routes/documents.routes.js'
 import userRoutes from './routes/user.routes.js'
 
 
@@ -23,8 +24,10 @@ app.get('/', (req, res) =>{
 })
 
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productsRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/products', productsRoutes);
+app.use('/api/documents', documentsRoutes)
+
 
 export default app;
 

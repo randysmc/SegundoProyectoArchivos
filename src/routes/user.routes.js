@@ -3,18 +3,14 @@ const router = Router();
 
 import * as userController from "../controllers/user.controller.js";
 
-import { isAdmin, verifyToken, isEmployed } from "../middlewares/authJwt.js";
-import { chekRolesExisted } from "../middlewares/verifySignup.js";
-//import { verifyToken, isAdmin, isEmployed } from "../middlewares/authJwt.js";
+
+import { checkRolesExisted } from "../middlewares/verifySignup.js";
+import {authRequire, isAdmin} from '../middlewares/validateToken.js'
+
 
 router.get("/", userController.getUsers);
 
-/**
- * router.post('/', [verifyToken,
-    isAdmin,
-    chekRolesExisted], userController.createUser)
- * 
- */
+router.post("/", userController.createUser);
 
 
-    export default router;
+export default router;

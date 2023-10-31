@@ -37,3 +37,15 @@ export const authRequire =  (req, res, next) =>{
     return res.status(403).json({message: "Require ser administrador"})
 }
 
+export const isEmployed = async(req, res, next) => {
+    //comprobar si es admin
+    const user = await User.findById(req.userId)
+    const roles = await Role.find({_id: {$in: user.roles}})
+    for(let i = 0; i < roles.length; i++){
+        if(roles[i].name === "empleado"){
+            next();
+            return
+        } 
+    }
+    return res.status(403).json({message: "Require ser empleado"})
+}

@@ -1,6 +1,7 @@
 //Es para validar
 
 import { ROLES } from "../models/role.model.js";
+import User from '../models/user.model.js';
 
 export const checkDuplicateUser = async(req, res, next) =>{
   const user = await User.findOne({username: req.body.username})
@@ -10,7 +11,7 @@ export const checkDuplicateUser = async(req, res, next) =>{
 }
 
 
-export const chekRolesExisted = (req, res, next) => {
+export const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
       /** ROLES
