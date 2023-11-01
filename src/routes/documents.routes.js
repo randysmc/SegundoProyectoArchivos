@@ -3,18 +3,19 @@ import { Router } from "express";
 const router = Router();
 
 import * as documentsController from '../controllers/documents.controller.js'
-//import { verifyToken, isAdmin, isEmployed } from "../middlewares/authJwt";
+import { authRequire, isAdmin } from "../middlewares/validateToken.js";
 
 
-router.get('/', documentsController.getDocuments);
+
+router.get('/', [authRequire, isAdmin], documentsController.getDocuments);
 
 router.get('/:documentId', documentsController.getDocumentById);
 
-router.post('/', documentsController.createDocument);
+router.post('/', [authRequire, isAdmin], documentsController.createDocument);
 
-router.put('/:documentId', documentsController.updateDocument);
+router.put('/:documentId',[authRequire, isAdmin],documentsController.updateDocument);
 
-router.delete('/:documentId', documentsController.deleteDocument);
+router.delete('/:documentId',[authRequire, isAdmin], documentsController.deleteDocument);
 
 
 
