@@ -19,3 +19,6 @@ router.get('/profile', [authRequire, isAdmin], profile);
 /* 1:09 headers y cookie */
 
 export default router;
+
+
+//1.50 es donde me quede, 
