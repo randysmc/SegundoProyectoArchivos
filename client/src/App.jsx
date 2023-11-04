@@ -1,26 +1,35 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import { AuthProvider } from './context/AuthContext'
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import { AuthProvider } from "./context/AuthContext";
+import DocumentPage from "./pages/DocumentPage";
+import DocumentFormPage from "./pages/DocumentFormPage";
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
 
-function App(){
-  return(
+import ProtectedRoute  from "./ProtectedRoute";
+
+function App() {
+  return (
     <AuthProvider>
-          <BrowserRouter>
-    <Routes>
-      <Route path='/' element = {<h1>Home Page</h1>}/>
-      <Route path='/login' element = {< LoginPage /> }/>
-      <Route path='/register' element = {<RegisterPage/>}/>
-      <Route path='/documents' element = {<h1>Documents Page</h1>}/>
-      <Route path='/add-document' element = {<h1>New Document</h1>}/>
-      <Route path='/documents/:id' element = {<h1>Update Document</h1>}/>
-      <Route path='/profile' element = {<h1>profile</h1>}/>
-    </Routes>
-    </BrowserRouter>
-    </AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
-  )
+          <Route element={<ProtectedRoute/>}>
+            <Route path="/documents" element={<DocumentPage />} />
+            <Route path="/add-document" element={<DocumentFormPage />} />
+            <Route path="/documents/:id" element={<DocumentFormPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

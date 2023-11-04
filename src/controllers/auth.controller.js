@@ -4,6 +4,8 @@ import config from "../config.js";
 import Role from "../models/role.model.js";
 import { token } from "morgan";
 import { createAccessToken } from "../libs/jwt.js";
+import jwt from "jsonwebtoken";
+import { TOKEN_SECRET } from "../config.js";
 
 //crear cuenta
 
@@ -13,10 +15,8 @@ export const register = async (req, res) => {
   // const userFound = User.find({email})
 
   try {
-
-    const userFound = await User.findOne({username});
-    if(userFound)
-      return res.status(400).json( ['Username is already in use'])
+    const userFound = await User.findOne({ username });
+    if (userFound) return res.status(400).json(["Username is already in use"]);
 
     const newUser = new User({
       username,
@@ -76,7 +76,11 @@ export const login = async (req, res) => {
      */
 
     const token = await createAccessToken({ id: userFound._id });
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      httpOnly: false,
+    });
     res.json({
       id: userFound._id,
       username: userFound.username,
@@ -109,4 +113,22 @@ export const profile = async (req, res, next) => {
 
   res.send("profile");
   next();
+};
+
+export const verifyToken = async (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token) return res.status(401).json({ messag: "Unauthorized" });
+
+  jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+    if (err) return res.status(401).json({ message: "Unauthorized" });
+
+    const userFound = await User.findById(user.id);
+    if (!userFound) return res.status(401).json({ message: "Unauthorized" });
+
+    return res.json({
+      id: userFound._id,
+      username: userFound.username,
+    });
+  });
 };
