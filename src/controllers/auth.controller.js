@@ -13,6 +13,11 @@ export const register = async (req, res) => {
   // const userFound = User.find({email})
 
   try {
+
+    const userFound = await User.findOne({username});
+    if(userFound)
+      return res.status(400).json( ['Username is already in use'])
+
     const newUser = new User({
       username,
       password: await User.encryptPassword(password),
@@ -27,16 +32,16 @@ export const register = async (req, res) => {
     }
 
     //Lo guarda en la base de datos
-    const userFound = await newUser.save();
-    console.log(userFound);
-    await createAccessToken({ id: userFound._id });
+    const userSaved = await newUser.save();
+    console.log(userSaved);
+    await createAccessToken({ id: userSaved._id });
 
     res.cookie("token", token);
     res.json({
-      id: userFound._id,
-      username: userFound.username,
-      createdAt: userFound.createdAt,
-      updatedAt: userFound.updatedAt,
+      id: userSaved._id,
+      username: userSaved.username,
+      createdAt: userSaved.createdAt,
+      updatedAt: userSaved.updatedAt,
     });
 
     //res.status(200).json({ token });
