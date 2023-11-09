@@ -1,27 +1,32 @@
 import { useDocuments } from "../context/DocumentsContext";
 import {Link} from 'react-router-dom'
+import dayjs from "dayjs";
+import utc  from "dayjs/plugin/utc";
 
 function DocumentCard({ document }) {
   const { deleteDocument } = useDocuments();
   //console.log(document)
   return (
-    <div className="bg-red-950 max-w-sm rounded-md">
+    <div className="bg-gray-700 max-w-sm rounded-md">
       <header className="flex justify-between">
         <h1 className="text-2xl">{document.title}</h1>
         <div className="flex gap-x-3 items-center">
           <button
+          className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-md"
             onClick={() => {
               deleteDocument(document._id)
             }}
           >
             Eliminar
           </button>
-          <Link to={`/documents/${document._id}`}>Editar</Link>
+          <Link className="bg-blue-700 text-white px-4 py-2 rounded-md" to={`/documents/${document._id}`}>Editar</Link>
         </div>
       </header>
       <p className="text-ellipsis">{document.description}</p>
 
-      <p>{new Date(document.date).toLocaleDateString()}</p>
+      <p>
+        {dayjs(document.date).utc().format('DD/MM/YYYY') }
+      </p>
     </div>
   );
 }

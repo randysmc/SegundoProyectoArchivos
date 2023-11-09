@@ -7,9 +7,12 @@ function Navbar() {
 
   return (
     <div className="bg-green-950 my-3 flex-shrink justify-between py-5 px-5">
-      <Link to="/">
+      <Link to={
+        isAuthenticated ? "documents": "/"
+      }>
         <h1 className="text-2xl text-yellow-900 font-sans">CloudArch</h1>
       </Link>
+
       <ul className="flex gap-x-3">
         {isAuthenticated ? (
           <>
