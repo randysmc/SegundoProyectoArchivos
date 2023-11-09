@@ -1,14 +1,17 @@
 import { useForm } from "react-hook-form";
 import { useDocuments } from "../context/DocumentsContext";
+import { useNavigate } from "react-router-dom";
 
 
 function DocumentFormPage() {
   const { register, handleSubmit } = useForm();
   const { createDocument } = useDocuments();
+  const navigate = useNavigate();
   //console.log(createDocument())
 
   const onSubmit = handleSubmit((data) => {
-    createDocument(data)
+    createDocument(data);
+    navigate('/documents')
   });
 
   return (

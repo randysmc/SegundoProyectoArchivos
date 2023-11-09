@@ -10,24 +10,28 @@ import ProfilePage from "./pages/ProfilePage";
 
 import ProtectedRoute from "./ProtectedRoute";
 import { DocumentProvider } from "./context/DocumentsContext";
+//import Sidebard from "./components/Sidebard";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <AuthProvider>
       <DocumentProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Navbar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/documents" element={<DocumentPage />} />
-              <Route path="/add-document" element={<DocumentFormPage />} />
-              <Route path="/documents/:id" element={<DocumentFormPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Route>
-          </Routes>
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/documents" element={<DocumentPage />} />
+                  <Route path="/add-document" element={<DocumentFormPage />} />
+                  <Route path="/documents/:id" element={<DocumentFormPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                </Route>
+              </Routes>
+
         </BrowserRouter>
       </DocumentProvider>
     </AuthProvider>
