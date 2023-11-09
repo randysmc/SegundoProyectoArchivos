@@ -9,23 +9,22 @@ import {createDocumentSchema} from "../schemas/document.schema.js"
 
 router.get("/", [authRequire, /*isAdmin*/], documentsController.getDocuments);
 
-router.get("/:documentId", documentsController.getDocumentById);
+router.get("/:id", documentsController.getDocumentById);
 
-router.post(
-  "/",
+router.post("/",
   [authRequire, /*isAdmin*/],
   validateSchema(createDocumentSchema),
   documentsController.createDocument
 );
 
 router.put(
-  "/:documentId",
+  "/:id",
   [authRequire, /*isAdmin*/],
   documentsController.updateDocument
 );
 
 router.delete(
-  "/:documentId",
+  "/:id",
   [authRequire, /*isAdmin*/],
   documentsController.deleteDocument
 );

@@ -18,7 +18,8 @@ function App() {
     <AuthProvider>
       <DocumentProvider>
         <BrowserRouter>
-            <Navbar />
+<main className="container mx-auto px-10">
+<Navbar />
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
@@ -31,6 +32,7 @@ function App() {
                   <Route path="/profile" element={<ProfilePage />} />
                 </Route>
               </Routes>
+</main>
 
         </BrowserRouter>
       </DocumentProvider>

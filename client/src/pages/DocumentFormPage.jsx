@@ -1,13 +1,20 @@
 import { useForm } from "react-hook-form";
 import { useDocuments } from "../context/DocumentsContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 
 function DocumentFormPage() {
   const { register, handleSubmit } = useForm();
-  const { createDocument } = useDocuments();
+  const { createDocument, getDocument } = useDocuments();
   const navigate = useNavigate();
-  //console.log(createDocument())
+  const params = useParams();
+
+  useEffect(() => {
+    if(params.id){
+      getDocument(params.id);
+    }
+  }, [] )
 
   const onSubmit = handleSubmit((data) => {
     createDocument(data);

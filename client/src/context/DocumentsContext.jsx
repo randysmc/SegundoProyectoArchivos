@@ -1,5 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { createDocumentRequest, getDocumentsRequest } from "../api/documents";
+import {
+  createDocumentRequest,
+  getDocumentsRequest,
+  deleteDocumentRequest,
+  getDocumentRequest
+} from "../api/documents";
 
 const DocumentContext = createContext();
 
@@ -19,18 +24,31 @@ export function DocumentProvider({ children }) {
   const getDocuments = async () => {
     try {
       const res = await getDocumentsRequest();
-      setDocuments(res.data)
+      setDocuments(res.data);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
   };
 
   const createDocument = async (document) => {
-    console.log("document la concha de la lora");
+    //console.log("document la concha de la lora");
     const res = await createDocumentRequest(document);
     console.log(res);
   };
+
+  const deleteDocument = async (id) => {
+    try {
+      const res = await deleteDocumentRequest(id);
+      if(res.status === 204) setDocuments(documents.filter ((document) => document._id !== id));
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const getDocument = async (id) =>{
+    const res = await getDocumentRequest(id);
+    console.log(res)
+  }
 
   return (
     <DocumentContext.Provider
@@ -38,6 +56,8 @@ export function DocumentProvider({ children }) {
         documents,
         createDocument,
         getDocuments,
+        deleteDocument,
+        getDocument
       }}
     >
       {children}

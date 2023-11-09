@@ -13,7 +13,7 @@ function DocumentPage() {
   if (documents.length === 0) return <h1>No Documents</h1>;
 
   return (
-    <div>
+    <div className="grid grid-cols-1 gap-4">
       {documents.map((document) => (
         <DocumentCard document={document} key={document._id}/>
       ))}

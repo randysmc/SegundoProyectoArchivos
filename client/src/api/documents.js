@@ -1,13 +1,13 @@
 import axios from "./axios";
 
-export const getDocumentsRequest = () => axios.get("/documents");
+export const getDocumentsRequest = async () => axios.get("/documents");
 
-export const getDocumentRequest = (id) => axios.get(`/documents/${id}`);
+export const getDocumentRequest = async (id) => axios.get(`/documents/${id}`);
 
-export const createDocumentRequest = (document) =>
+export const createDocumentRequest = async (document) =>
   axios.post("/documents", document);
 
-export const updateDocumentRequest = (document) =>
+export const updateDocumentRequest = async (document) =>
   axios.put(`/documents/${document._id}`, document);
 
-export const deleteDocumentRequest = (id) => axios.delete(`/documents/${id}`);
+export const deleteDocumentRequest = async (id) => axios.delete(`/documents/${id}`);
