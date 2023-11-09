@@ -3,7 +3,8 @@ import {
   createDocumentRequest,
   getDocumentsRequest,
   deleteDocumentRequest,
-  getDocumentRequest
+  getDocumentRequest,
+  updateDocumentRequest,
 } from "../api/documents";
 
 const DocumentContext = createContext();
@@ -39,15 +40,28 @@ export function DocumentProvider({ children }) {
   const deleteDocument = async (id) => {
     try {
       const res = await deleteDocumentRequest(id);
-      if(res.status === 204) setDocuments(documents.filter ((document) => document._id !== id));
+      if (res.status === 204)
+        setDocuments(documents.filter((document) => document._id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDocument = async (id) => {
+    try {
+      const res = await getDocumentRequest(id);
+      return res.data;
     } catch (error) {
       console.log(error)
     }
   };
 
-  const getDocument = async (id) =>{
-    const res = await getDocumentRequest(id);
-    console.log(res)
+  const updateDocument = async (id, document) => {
+    try {
+      await updateDocumentRequest(id, document);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -57,7 +71,8 @@ export function DocumentProvider({ children }) {
         createDocument,
         getDocuments,
         deleteDocument,
-        getDocument
+        getDocument,
+        updateDocument
       }}
     >
       {children}

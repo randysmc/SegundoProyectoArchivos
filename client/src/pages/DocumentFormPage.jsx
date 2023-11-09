@@ -5,20 +5,31 @@ import { useEffect } from "react";
 
 
 function DocumentFormPage() {
-  const { register, handleSubmit } = useForm();
-  const { createDocument, getDocument } = useDocuments();
+  const { register, handleSubmit, setValue} = useForm();
+  const { createDocument, getDocument, updateDocument } = useDocuments();
   const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
-    if(params.id){
-      getDocument(params.id);
+    async function loadDocument(){
+      if(params.id){
+        const document = await getDocument(params.id);
+        console.log(document);
+        setValue('title', document.title);
+        setValue('description', document.description)
+      }
     }
+    loadDocument()
   }, [] )
 
   const onSubmit = handleSubmit((data) => {
-    createDocument(data);
+    if(params.id){
+      updateDocument(params.id, data)
+    }else{
+      createDocument(data)      
+    }
     navigate('/documents')
+
   });
 
   return (
