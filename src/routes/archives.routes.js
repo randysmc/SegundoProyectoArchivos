@@ -3,6 +3,7 @@ import {Router} from 'express'
 const router = Router();
 
 import *as archivesController from '../controllers/archives.controller.js';
+import { authRequire } from '../middlewares/validateToken.js';
 import { validateSchema } from '../middlewares/validator.middleware.js'
 import { createArchiveSchema } from '../schemas/archives.schema.js';
 
