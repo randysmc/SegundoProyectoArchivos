@@ -6,6 +6,10 @@ const documentSchema = new Schema(
       type: String,
       unique: true,
     },
+    extension:{
+      type: String,
+      require: true,
+    },
     description: {
       type: String,
       require: true,
