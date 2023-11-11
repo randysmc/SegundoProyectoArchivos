@@ -4,7 +4,7 @@ import File from '../models/files.model.js'
 
 export const getArchives = async(req, res) => {
     try {
-        const archives = await Archive.find()
+        const archives = await Archive.find().populate("file");
         res.json(archives);
     } catch (error) {
         
@@ -25,7 +25,7 @@ export const createArchive = async(req, res) => {
             extension,
             description,
             date,
-            //user: req.user.id,
+            user: req.user.id,
             file: fileExist._id,
         });
 

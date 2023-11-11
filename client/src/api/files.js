@@ -1,3 +1,3 @@
-import axios from "axios";
+import axios from "./axios";
 
-export const getFileRequest = async() => axios.get('/files');
+export const getFilesRequest = async() => axios.get('/files');

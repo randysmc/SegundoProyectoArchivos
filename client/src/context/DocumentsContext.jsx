@@ -32,10 +32,16 @@ export function DocumentProvider({ children }) {
   };
 
   const createDocument = async (document) => {
+    try {
     //console.log("document la concha de la lora");
     const res = await createDocumentRequest(document);
-    console.log(res);
+    console.log(res.data);
+    } catch (error) {
+      console.log(error)
+    }
   };
+
+ 
 
   const deleteDocument = async (id) => {
     try {

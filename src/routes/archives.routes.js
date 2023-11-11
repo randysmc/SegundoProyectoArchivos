@@ -11,7 +11,7 @@ router.get('/', archivesController.getArchives);
 
 router.get('/:id', archivesController.getArchive)
 
-router.post('/', validateSchema(createArchiveSchema), archivesController.createArchive);
+router.post('/',  archivesController.createArchive);
 
 router.put('/:id', archivesController.updateArchive);
 
@@ -19,4 +19,4 @@ router.delete('/:id', archivesController.deleteArchive)
 
 
 export default router;
-
+/**validateSchema(createArchiveSchema) */

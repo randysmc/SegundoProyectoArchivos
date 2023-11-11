@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import {getFilesRequest} from '../api/files';
 
 
 
@@ -21,10 +22,21 @@ export function FileProvider({children}){
     const [files, setFiles] = useState([]);
 
 
+    const getFiles = async () => {
+        try {
+            const res = await getFilesRequest();
+            setFiles(res.data); 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return(
         <FileContext.Provider
             value={{
                 files,
+                getFiles,
             }}     
         >
             {children}
@@ -34,3 +46,4 @@ export function FileProvider({children}){
     
 
 }
+ 
