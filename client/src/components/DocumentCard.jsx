@@ -1,4 +1,5 @@
 import { useDocuments } from "../context/DocumentsContext";
+import { useFiles } from "../context/FilesContext";
 import {Link} from 'react-router-dom'
 import dayjs from "dayjs";
 import utc  from "dayjs/plugin/utc";
@@ -31,4 +32,22 @@ function DocumentCard({ document }) {
   );
 }
 
-export default DocumentCard;
+
+function Document2Card({ file }) {
+  const { deleteDocument } = useDocuments();
+  //console.log(document)
+  return (
+    <div className="bg-gray-700 max-w-sm rounded-md">
+      <header className="flex justify-between">
+        <h1 className="text-2xl">{file.name}</h1>
+      </header>
+      <p className="text-ellipsis">{file.path}</p>
+
+      <p>
+        {dayjs(document.date).utc().format('DD/MM/YYYY') }
+      </p>
+    </div>
+  );
+}
+
+export {DocumentCard, Document2Card};
