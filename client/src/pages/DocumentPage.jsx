@@ -11,9 +11,9 @@ function DocumentPage() {
     getDocuments();
   }, []);
 
-  useEffect(()=>{
+/**  useEffect(()=>{
     getFiles()
-  },[])
+  },[]) */
 
   if (documents.length === 0) return <h1>No Documents</h1>;
 

@@ -5,7 +5,7 @@ export const getDocuments = async (req, res) => {
 try {
     const documents = await Document.find({
         user: req.user.id,
-      }).populate("user");
+      }).populate("user") ;
       res.json(documents);
 } catch (error) {
     return res.status(500).json({message: error.message})

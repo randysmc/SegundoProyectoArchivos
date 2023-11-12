@@ -18,12 +18,11 @@ function RegisterPage() {
   const navigate = useNavigate();
 
 
-/**
- *     useEffect(() => {
+    useEffect(() => {
     if (isAuthenticated) navigate("/register");
   }),
     [isAuthenticated];
- */
+
 
   const onSubmit = handleSubmit(async (values) => {
     signup(values);

@@ -34,24 +34,33 @@ function App() {
       <DocumentProvider>
         <FileProvider>
           <ArchiveProvider>
-          <UserProvider>
-          <BrowserRouter>
+            <UserProvider>
+              <BrowserRouter>
                 <main className="container mx-auto px-10">
                   <Navbar />
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/files" element={<FilePage />} />
-
-                    <Route path="/users" element={<UsersPage />} />
-
-                    <Route path="/archives" element={<ArchivesPage />} />
-                    <Route path="/add-archive" element={<ArchiveFormPage />} />
-                    <Route path="/archives/:id" element={<ArchiveFormPage />} />
-                    <Route path="/archive/:id" element={<InfoArchivePage />} />
 
                     <Route element={<ProtectedRoute />}>
+                      <Route path="/files" element={<FilePage />} />
+
+                      <Route path="/users" element={<UsersPage />} />
+
+                      <Route path="/archives" element={<ArchivesPage />} />
+                      <Route
+                        path="/add-archive"
+                        element={<ArchiveFormPage />}
+                      />
+                      <Route
+                        path="/archives/:id"
+                        element={<ArchiveFormPage />}
+                      />
+                      <Route
+                        path="/archive/:id"
+                        element={<InfoArchivePage />}
+                      />
                       <Route path="/documents" element={<DocumentPage />} />
                       <Route
                         path="/add-document"
@@ -66,7 +75,7 @@ function App() {
                   </Routes>
                 </main>
               </BrowserRouter>
-          </UserProvider>
+            </UserProvider>
           </ArchiveProvider>
         </FileProvider>
       </DocumentProvider>
