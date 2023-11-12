@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router()
 
 import * as productsController from "../controllers/products.controller.js";
-import { verifyToken, isAdmin, isEmployed } from "../api/src/middlewares/authJwt.js";
+import { verifyToken, isAdmin, isEmployed } from "../middlewares/authJwt.js";
 
 
 

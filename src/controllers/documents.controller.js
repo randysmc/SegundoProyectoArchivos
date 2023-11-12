@@ -1,5 +1,5 @@
-import Document from "../api/src/models/documents.model.js";
-import User from "../api/src/models/user.model.js";
+import Document from "../models/documents.model.js";
+import User from "../models/user.model.js";
 
 export const getDocuments = async (req, res) => {
 try {

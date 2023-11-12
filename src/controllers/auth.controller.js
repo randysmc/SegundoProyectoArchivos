@@ -1,11 +1,11 @@
-import User from "../api/src/models/user.model.js";
+import User from "../models/user.model.js";
 //import jwt from "jsonwebtoken";
-import config from "../api/src/config.js";
-import Role from "../api/src/models/role.model.js";
+import config from "../config.js";
+import Role from "../models/role.model.js";
 import { token } from "morgan";
 import { createAccessToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
-import { TOKEN_SECRET } from "../api/src/config.js";
+import { TOKEN_SECRET } from "../config.js";
 
 //crear cuenta
 

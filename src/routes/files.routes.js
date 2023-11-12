@@ -3,8 +3,8 @@ import { Router } from "express";
 const router = Router();
 
 import * as filesController from '../controllers/files.controller.js'
-import { validateSchema } from "../api/src/middlewares/validator.middleware.js";
-import { createFileSchema } from '../api/src/schemas/files.schema.js'
+import { validateSchema } from "../middlewares/validator.middleware.js";
+import { createFileSchema } from '../schemas/files.schema.js'
 
 router.get('/', filesController.getFiles);
 

@@ -3,9 +3,9 @@ import { Router } from "express";
 const router = Router();
 
 import * as documentsController from "../controllers/documents.controller.js";
-import { authRequire, isAdmin } from "../api/src/middlewares/validateToken.js";
-import { validateSchema } from "../api/src/middlewares/validator.middleware.js";
-import {createDocumentSchema} from "../api/src/schemas/document.schema.js"
+import { authRequire, isAdmin } from "../middlewares/validateToken.js";
+import { validateSchema } from "../middlewares/validator.middleware.js";
+import {createDocumentSchema} from "../schemas/document.schema.js"
 
 router.get("/", [authRequire, /*isAdmin*/], documentsController.getDocuments);
 

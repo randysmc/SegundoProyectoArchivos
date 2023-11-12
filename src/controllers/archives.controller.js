@@ -1,6 +1,6 @@
-import Archive from "../api/src/models/archives.model.js";
-import User from "../api/src/models/user.model.js";
-import File from "../api/src/models/files.model.js";
+import Archive from "../models/archives.model.js";
+import User from "../models/user.model.js";
+import File from "../models/files.model.js";
 
 export const getArchives = async (req, res) => {
   try {

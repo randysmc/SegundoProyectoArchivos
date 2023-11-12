@@ -1,5 +1,5 @@
-import File from "../api/src/models/files.model.js";
-import Archive from "../api/src/models/archives.model.js";
+import File from "../models/files.model.js";
+import Archive from "../models/archives.model.js";
 
 export const getFiles = async (req, res) => {
   try {

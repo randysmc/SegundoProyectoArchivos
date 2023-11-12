@@ -4,8 +4,8 @@ const router = Router();
 import * as userController from "../controllers/user.controller.js";
 
 
-import { checkRolesExisted } from "../api/src/middlewares/verifySignup.js";
-import {authRequire, isAdmin} from '../api/src/middlewares/validateToken.js'
+import { checkRolesExisted } from "../middlewares/verifySignup.js";
+import {authRequire, isAdmin} from '../middlewares/validateToken.js'
 
 
 router.get("/", userController.getUsers);
