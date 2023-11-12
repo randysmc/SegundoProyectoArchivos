@@ -1,0 +1,17 @@
+# Usa una imagen base que tenga Node.js instalado
+FROM node:14
+
+# Establece el directorio de trabajo en /app/client
+WORKDIR /app/client
+
+# Copia los archivos de tu frontend al contenedor
+COPY . .
+
+# Instala las dependencias del frontend
+RUN npm install
+
+# Expone el puerto en el que se ejecutará tu aplicación frontend
+EXPOSE 8080
+
+# Comando para iniciar la aplicación frontend
+CMD ["npm", "run", "dev"]

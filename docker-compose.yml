@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  # MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./data/db:/data/db
+
+  # Backend (Node.js)
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+    volumes:
+      - ./backend:/app/backend
+
+  # Frontend (Vite + React)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    volumes:
+      - ./client:/app/client
