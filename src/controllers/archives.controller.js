@@ -17,8 +17,14 @@ export const createArchive = async(req, res) => {
 
         //verifico si la carpeta existe
         const fileExist = await File.findOne({name: file});
-        if(!fileExist)
+if(!fileExist)
             return res.status(404).json({error: 'file not found'})
+        
+
+       /** //si no existe la carpeta la voy a crear
+        if(!fileExist){
+            fileExist = await new File({})
+        }  */   
 
         const archive = new Archive({
             title, 
@@ -36,6 +42,34 @@ export const createArchive = async(req, res) => {
     }
 
 }
+
+
+
+
+export const copyArchive = async(req, res) =>{
+    try {
+        const archive = req.params.id;
+
+        const originalArchive = await Archive.findById(archive);
+        
+        if(!originalArchive){
+            return res.status(404).json({message: 'Archive not found'})
+        }
+
+        const copyArch = new Archive({
+            title: originalArchive.title + '_copia',
+            extension: originalArchive.extension,
+            description: originalArchive.description,
+            file: originalArchive.file
+        });
+        const savedCopy = await copyArch.save();
+        res.status(201).json(savedCopy)
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+
 
 export const deleteArchive = async(req, res) => {
     try {
@@ -70,8 +104,8 @@ export const getArchive = async(req, res) => {
     try {
         const archive = await Archive.findById(req.params.id);
         if(!archive) return res.status(404).json({message: "Archive not found"});
-        res.json(archive)
-        return res.status(200).json({message: error.message})
+        //res.json(archive)
+        return res.status(200).json(archive)
     } catch (error) {
         return res.status(500).json({message: error.message})
     }

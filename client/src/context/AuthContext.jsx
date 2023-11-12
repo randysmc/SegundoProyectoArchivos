@@ -18,18 +18,21 @@ export const AuthProvider = ({ children }) => {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
+  //Registrarse
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
       console.log(res.data);
-      setUser(res.data);
-      setIsAuthenticated(true);
+      //setUser(res.data);
+      //setIsAuthenticated(true);
     } catch (error) {
       //console.log(error.response)
       setErrors(error.response.data);
     }
   };
 
+  //iniciar Sesion
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
@@ -43,6 +46,7 @@ export const AuthProvider = ({ children }) => {
       setErrors([error.response.data.message]);
     }
   };
+
 
   const logout = () => {
     Cookies.remove('token');

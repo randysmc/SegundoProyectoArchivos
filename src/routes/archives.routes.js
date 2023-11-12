@@ -17,6 +17,8 @@ router.put('/:id', archivesController.updateArchive);
 
 router.delete('/:id', archivesController.deleteArchive)
 
+router.post('/:id', archivesController.copyArchive);
+
 
 export default router;
 /**validateSchema(createArchiveSchema) */

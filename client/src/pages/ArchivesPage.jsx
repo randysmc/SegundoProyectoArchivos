@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useArchives } from "../context/ArchivesContext";
-import { Link } from "react-router-dom";
 import ArchiveCard from '../components/ArchiveCard'
 
-function ArchivePage() {
+
+function ArchivesPage() {
   const { getArchives, archives } = useArchives();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function ArchivePage() {
   //console.log(archives)
 
   return (
-    <div>
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3">
         {archives.map((archive) =>(
             <ArchiveCard archive={archive} key={archive._id}/>
         ))}
@@ -22,8 +22,7 @@ function ArchivePage() {
   )
 }
 
-export default ArchivePage;
-
+export default ArchivesPage
 
 /**
  * <h1>nombre</h1>

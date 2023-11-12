@@ -1,27 +1,34 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function RegisterPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const { signup, isAuthenticated, errors: registerErrors } = useAuth();
   
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated) navigate("/documents");
+
+/**
+ *     useEffect(() => {
+    if (isAuthenticated) navigate("/register");
   }),
     [isAuthenticated];
+ */
 
   const onSubmit = handleSubmit(async (values) => {
     signup(values);
   });
+ 
 
   return (
 
@@ -37,7 +44,7 @@ function RegisterPage() {
         <input
           type="text"
           {...register("username", { required: true })}
-          className="w-full bg-gray-500 text-green-400 px-4 py-3 rounded-md my-2"
+          className="w-full bg-gray-500 text-white px-4 py-3 rounded-md my-2"
           placeholder="Username"
         />
 
@@ -46,21 +53,40 @@ function RegisterPage() {
         )}
 
         <input
-          type="password"
+          /*type="password" */
+          type= {showPassword ? 'text': 'password'}
           {...register("password", { required: true })}
-          className="w-full bg-gray-500 text-green-400 px-4 py-3 rounded-md my-3"
+          className="w-full bg-gray-500 text-white px-4 py-3 rounded-md my-3"
           placeholder="Password"
         />
+        <button type="button"
+        onClick={() => setShowPassword(!showPassword)} className="text-white">
+          {showPassword ? 'Hide' : 'Show'} Password
+        </button>
         {errors.password && (
           <p className="text-red-500"> Password is required</p>
         )}
+        <select
+        id="roles"
+        {...register('roles')}
+        onChange={(e) => setValue('roles', e.target.value, true)}
+        className="w-full bg-gray-500 text-white px-4 py-3 rounded-md my-3"
+        >
+          <option value="empleado">Empleado</option>
+        </select>
         <button type="submit">Register</button>
+
+
       </form>
-      <p className="flex gap-x-1 justify-center">
-            Ya tienes una cuenta <Link to="/login" className="text-sky-500">Signin</Link>
-        </p>
+
     </div>
   );
 }
 
 export default RegisterPage;
+
+
+
+/**      <p className="flex gap-x-1 justify-center">
+            Ya tienes una cuenta <Link to="/login" className="text-sky-500">Signin</Link>
+        </p> */

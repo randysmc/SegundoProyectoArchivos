@@ -45,7 +45,8 @@ function DocumentFormPage() {
   });
 
   return (
-    <div className="bg-gray-600 max-w w-full p-1 rounded-md">
+<div className='flex h-[calc(100vh-100px] items-center justify-center'>
+<div className="bg-gray-600 max-w-md w-full p-1 rounded-md">
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Titulo</label>
         <input
@@ -75,6 +76,7 @@ function DocumentFormPage() {
         <button className="bg-indigo-500 px-4, py-2 rounded-md">Save</button>
       </form>
     </div>
+</div>
   );
 }
 

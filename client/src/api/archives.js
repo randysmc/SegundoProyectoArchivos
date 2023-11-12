@@ -12,4 +12,7 @@ export const updateArchiveRequest = async (id, archive) =>
   axios.put(`/archives/${id}`, archive);
 
 export const deleteArchiveRequest = async (id) =>
-  axios.delete(`/archive/${id}`);
+  axios.delete(`/archives/${id}`);
+
+export const copyArchiveRequest = async (id, archive) =>
+  axios.post(`/archives/${id}`, archive)

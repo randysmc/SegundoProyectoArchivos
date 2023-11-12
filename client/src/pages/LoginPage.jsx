@@ -19,7 +19,7 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if(isAuthenticated) navigate('/documents');
+    if(isAuthenticated) navigate('/profile');
   }, [isAuthenticated]);
 
   return (
